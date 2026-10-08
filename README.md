@@ -4,7 +4,9 @@ A personal waiting-and-follow-up manager. Looops tracks outcomes that depend on 
 
 This is not a task list. The work is not the next checkbox. The work is an outcome blocked on someone else: who still has it, when you will ask again, and what the outcome becomes once they respond.
 
-> Every open loop should name who still has it, and when you’ll ask again.
+> Every open loop should name who still has it, and when you’ll loop back.
+
+The name is the model. You **open a loop** for something you want done, **loop in** the person who has it, and **loop back** with them until they move. Each follow-up is one more pass around the loop. When the outcome is achieved, you **close the loop**.
 
 ## The problem
 
@@ -85,7 +87,7 @@ Status is derived. You do not set it by hand.
 | Waiting | They still have it, and it is not yet time to nudge |
 | Follow-up due | It is time to nudge the person who still has it |
 | Paused | Deliberately set aside |
-| Complete | The outcome is done |
+| Closed | The outcome is achieved; the loop is closed |
 
 ## MVP
 

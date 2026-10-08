@@ -51,11 +51,11 @@
 		if (!view) return
 		const when = (event.submitter as HTMLButtonElement | null)?.value as When | undefined
 		if (!person.trim() || !ask.trim()) {
-			formError = 'Name who has it, and what they owe you.'
+			formError = 'Name who you’re looping in, and what they owe you.'
 			return
 		}
 		if (!when) {
-			formError = 'Choose when you will nudge them.'
+			formError = 'Choose when to loop back.'
 			return
 		}
 		notice = today.addThread(view.id, person, ask, when)
@@ -98,21 +98,21 @@
 		<header class="min-w-0 lg:sticky lg:top-10 lg:self-start">
 			<div class="flex items-center justify-between border-b border-foreground/15 pb-3 sm:pb-4">
 				<Wordmark class={textLink} />
-				<a href="/outcomes" class="text-muted-foreground hover:text-foreground hidden text-sm lg:block {textLink}">Outcomes</a>
+				<a href="/outcomes" class="text-muted-foreground hover:text-foreground hidden text-sm lg:block {textLink}">Loops</a>
 			</div>
 
 			{#if view}
 				<h1 class="mt-9 text-[clamp(2.25rem,3vw,2.875rem)] leading-[0.98] font-semibold tracking-[-0.04em]">
 					{view.title}
 				</h1>
-				<p class="text-muted-foreground mt-4 text-sm font-medium {justFinished ? 'motion-safe:animate-done' : ''}">
+				<p class="text-muted-foreground mt-4 text-sm font-medium {justFinished ? 'animate-done' : ''}">
 					{view.label}
 				</p>
 
 				{#if view.status === 'paused'}
 					<div class="mt-8">
-						<p class="text-muted-foreground mb-3 text-sm">Out of Today until you bring it back.</p>
-						<Button class="min-h-11 w-full justify-between" onclick={resume}>Bring back</Button>
+						<p class="text-muted-foreground mb-3 text-sm">Set aside, not closed. It stays off Today until you reopen it.</p>
+						<Button class="min-h-11 w-full justify-between" onclick={resume}>Reopen</Button>
 					</div>
 				{:else if view.isOpen && !adding}
 					<div class="mt-8 grid gap-2">
@@ -121,16 +121,16 @@
 							class="min-h-11 w-full justify-between"
 							onclick={() => { adding = true; formError = ''; notice = '' }}
 						>
-							Add a person
+							Loop someone in
 						</Button>
 						<div class="flex gap-2">
-							<Button variant="outline" class="min-h-11 flex-1" onclick={finish}>Done</Button>
+							<Button variant="outline" class="min-h-11 flex-1" onclick={finish}>Close</Button>
 							<Button variant="ghost" class="min-h-11 flex-1" onclick={pause}>Set aside</Button>
 						</div>
 					</div>
 				{/if}
 			{:else}
-				<h1 class="mt-9 text-[clamp(2.5rem,5vw,4.25rem)] leading-[0.95] font-semibold tracking-[-0.04em]">Outcome</h1>
+				<h1 class="mt-9 text-[clamp(2.5rem,5vw,4.25rem)] leading-[0.95] font-semibold tracking-[-0.04em]">Loop</h1>
 				<p class="text-muted-foreground mt-4 text-sm">Not found on this device.</p>
 			{/if}
 		</header>
@@ -139,11 +139,11 @@
 			{#if !view}
 				<section aria-labelledby="missing-outcome">
 					<div class="border-b border-foreground pb-3">
-						<h2 id="missing-outcome" class="text-lg font-semibold tracking-[-0.02em]">This outcome is not here</h2>
+						<h2 id="missing-outcome" class="text-lg font-semibold tracking-[-0.02em]">This loop is not here</h2>
 					</div>
 					<div class="border-b border-border py-12">
 						<p class="text-muted-foreground text-sm">It is not stored on this device.</p>
-						<a href="/outcomes" class="mt-4 inline-flex min-h-11 items-center text-sm font-semibold {textLink}">Return to outcomes</a>
+						<a href="/outcomes" class="mt-4 inline-flex min-h-11 items-center text-sm font-semibold {textLink}">Return to loops</a>
 					</div>
 				</section>
 			{:else}
@@ -154,10 +154,10 @@
 				{#if adding}
 					<form class="border-secondary bg-card mb-10 border p-5 sm:p-7" onsubmit={addPerson}>
 						<Field.Set>
-							<Field.Legend>{view.open.length ? 'Add another holder' : 'Name the next holder'}</Field.Legend>
+							<Field.Legend>{view.open.length ? 'Loop in someone else' : 'Loop in who has it next'}</Field.Legend>
 							<Field.Group class="mt-6 grid gap-5 sm:grid-cols-2">
 								<Field.Field>
-									<Field.Label for="who-person">Who has it</Field.Label>
+									<Field.Label for="who-person">Who</Field.Label>
 									<Input id="who-person" bind:value={person} name="person" autocomplete="off" aria-required="true" />
 								</Field.Field>
 								<Field.Field>
@@ -181,12 +181,12 @@
 				{#if view.open.length > 0 || view.isOpen}
 					<section aria-labelledby="holders-heading">
 						<div class="flex min-h-12 items-end justify-between gap-4 border-b border-foreground pb-3">
-							<h2 id="holders-heading" class="text-lg font-semibold tracking-[-0.02em]">Current holders</h2>
+							<h2 id="holders-heading" class="text-lg font-semibold tracking-[-0.02em]">In the loop</h2>
 							<span class="text-muted-foreground text-xs tabular-nums">{view.open.length}</span>
 						</div>
 						{#if view.open.length === 0}
 							<div class="border-b border-border py-10">
-								<p class="text-muted-foreground text-sm">No one is named yet. Add the next person who has to move.</p>
+								<p class="text-muted-foreground text-sm">No one yet. Loop in the next person who has to move.</p>
 							</div>
 						{:else}
 							<ul>

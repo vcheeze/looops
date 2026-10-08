@@ -97,7 +97,7 @@ export function derivedStatus(outcome: Outcome, now = new Date()): DerivedStatus
 export function statusLabel(status: DerivedStatus): string {
 	if (status === 'due') return 'Follow-up due'
 	if (status === 'paused') return 'Paused'
-	if (status === 'complete') return 'Complete'
+	if (status === 'complete') return 'Closed'
 	return 'Waiting'
 }
 
@@ -139,9 +139,9 @@ export function outcomeSummary(outcome: Outcome): string {
 	const open = openThreads(outcome)
 	if (outcome.status === 'complete') {
 		const last = story(outcome).at(-1)
-		return last?.label ?? 'Done'
+		return last?.label ?? 'Loop closed'
 	}
-	if (open.length === 0) return 'No one still has it'
+	if (open.length === 0) return 'No one is in the loop'
 	if (outcome.status === 'cancelled') return nameList(open.map((thread) => thread.person))
 	const nudge = nudgeLine(open[0]).replace(/\.$/, '')
 	return `${nameList(open.map((thread) => thread.person))} · ${nudge}`
@@ -174,8 +174,8 @@ export function nudgeLine(thread: Thread, now = new Date()): string {
 	const next = new Date(thread.nextNudgeAt)
 	const end = new Date(now)
 	end.setHours(23, 59, 59, 999)
-	if (next.getTime() <= end.getTime()) return "You'll nudge them today."
-	return `You'll nudge them on ${formatDay(next)}.`
+	if (next.getTime() <= end.getTime()) return "You'll loop back today."
+	return `You'll loop back on ${formatDay(next)}.`
 }
 
 export function threadContext(thread: Thread): string {
@@ -207,7 +207,7 @@ export function story(outcome: Outcome): StoryLine[] {
 }
 
 function touchPhrase(kind: TouchKind, person: string): string {
-	if (kind === 'asked') return `Asked ${person}`
+	if (kind === 'asked') return `Looped in ${person}`
 	if (kind === 'nudged') return `Nudged ${person}`
 	return `${person} replied`
 }
@@ -217,8 +217,8 @@ function waitingNotice(person: string, next: Date, now = new Date()): string {
 		next.getFullYear() === now.getFullYear() &&
 		next.getMonth() === now.getMonth() &&
 		next.getDate() === now.getDate()
-	if (sameDay) return `Waiting on ${person}. You'll nudge them today.`
-	return `Waiting on ${person}. You'll nudge them on ${formatDay(next)}.`
+	if (sameDay) return `Looped in ${person}. You'll loop back today.`
+	return `Looped in ${person}. You'll loop back on ${formatDay(next)}.`
 }
 
 function daysAgo(days: number): string {
@@ -384,18 +384,18 @@ class Queue {
 	nudgeOutcome(outcomeId: string): string {
 		const outcome = this.outcome(outcomeId)
 		const thread = leadOpen(outcome)
-		if (!thread) return `${outcome.title} has no one to nudge.`
+		if (!thread) return `No one is in the loop on ${outcome.title}.`
 		return this.nudge(outcomeId, thread.id)
 	}
 
 	deferOutcome(outcomeId: string): string {
 		const outcome = this.outcome(outcomeId)
 		const open = outcome.threads.filter((thread) => !thread.resolved)
-		if (open.length === 0) return `${outcome.title} has no one waiting.`
+		if (open.length === 0) return `No one is in the loop on ${outcome.title}.`
 		const next = shift('tomorrow')
 		for (const thread of open) thread.nextNudgeAt = next.toISOString()
 		this.save()
-		return `${outcome.title} comes back tomorrow.`
+		return `${outcome.title} comes back around tomorrow.`
 	}
 
 	nudge(outcomeId: string, threadId: string): string {
@@ -407,7 +407,7 @@ class Queue {
 			thread.nextNudgeAt = next.toISOString()
 		}
 		this.save()
-		return `Nudged ${thread.person}. You'll nudge them on ${formatDay(next)}.`
+		return `Nudged ${thread.person}. You'll loop back on ${formatDay(next)}.`
 	}
 
 	snooze(outcomeId: string, threadId: string, when: When): string {
@@ -415,7 +415,7 @@ class Queue {
 		const next = shift(when)
 		thread.nextNudgeAt = next.toISOString()
 		this.save()
-		return `You'll nudge ${thread.person} on ${formatDay(next)}.`
+		return `You'll loop back with ${thread.person} on ${formatDay(next)}.`
 	}
 
 	repliedDone(outcomeId: string): string {
@@ -423,7 +423,7 @@ class Queue {
 		this.replyOnOpenThreads(outcome)
 		outcome.status = 'complete'
 		this.save()
-		return `${outcome.title} is done.`
+		return `Loop closed. ${outcome.title} is done.`
 	}
 
 	repliedLater(outcomeId: string, threadId: string): string {
@@ -432,7 +432,7 @@ class Queue {
 		thread.touches.push({ id: uid(), at: new Date().toISOString(), kind: 'replied' })
 		thread.nextNudgeAt = next.toISOString()
 		this.save()
-		return `${thread.person} still has it. It comes back tomorrow.`
+		return `${thread.person} still has it. You'll loop back tomorrow.`
 	}
 
 	setAside(outcomeId: string): string {
@@ -468,7 +468,7 @@ class Queue {
 
 	addThread(outcomeId: string, person: string, ask: string, when: When): string {
 		const outcome = this.outcome(outcomeId)
-		if (outcome.status !== 'open') return `${outcome.title} is not open.`
+		if (outcome.status !== 'open') return `The loop on ${outcome.title} is not open.`
 		const name = person.trim()
 		const next = shift(when)
 		outcome.threads.push({
@@ -488,7 +488,7 @@ class Queue {
 		for (const thread of outcome.threads) thread.resolved = true
 		outcome.status = 'complete'
 		this.save()
-		return `${outcome.title} is done.`
+		return `Loop closed. ${outcome.title} is done.`
 	}
 
 	pause(outcomeId: string): string {
@@ -503,10 +503,10 @@ class Queue {
 		outcome.status = 'open'
 		this.save()
 		const open = openThreads(outcome)
-		if (open.length === 0) return `${outcome.title} is back. Name who has it next.`
+		if (open.length === 0) return `${outcome.title} is open again. Loop in who has it next.`
 		const soonest = open[0]
-		if (Date.parse(soonest.nextNudgeAt) <= endOfToday()) return `${outcome.title} is back on today.`
-		return `${outcome.title} is back. You'll nudge ${soonest.person} on ${formatDay(new Date(soonest.nextNudgeAt))}.`
+		if (Date.parse(soonest.nextNudgeAt) <= endOfToday()) return `${outcome.title} is open again and back on Today.`
+		return `${outcome.title} is open again. You'll loop back with ${soonest.person} on ${formatDay(new Date(soonest.nextNudgeAt))}.`
 	}
 
 	add(title: string, person: string, ask: string): string {
@@ -515,7 +515,7 @@ class Queue {
 			this.sample = false
 		}
 		const name = person.trim()
-		const next = shift('today')
+		const next = shift('tomorrow')
 		this.outcomes.push({
 			id: uid(),
 			title: title.trim(),
@@ -539,7 +539,7 @@ class Queue {
 		this.outcomes = outcomes
 		this.sample = sample
 		this.save()
-		const count = outcomes.length === 1 ? '1 outcome' : `${outcomes.length} outcomes`
+		const count = outcomes.length === 1 ? '1 loop' : `${outcomes.length} loops`
 		return `Restored ${count}.`
 	}
 

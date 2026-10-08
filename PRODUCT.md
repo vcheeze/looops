@@ -18,7 +18,7 @@ Looops is a personal waiting-and-follow-up manager. It tracks an outcome that de
 
 The user is waiting on other people. Looops does not track people waiting on the user.
 
-Success is a calm daily queue of nudges that are due. Each row names the person who still has the thing, and when the user will ask again. A reply usually does not finish the outcome. It reveals the next person who now has to move.
+Success is a calm daily queue of loops that have come back around for a nudge. Each row names the person who still has the thing, and when the user will ask again. A reply usually does not finish the outcome. It reveals the next person who now has to move.
 
 ## Positioning
 
@@ -51,7 +51,7 @@ Confirmed for the first version:
 - Log each touch.
 - Turn a response into the next person who owes something, another nudge later, completion, or a cancellation.
 - Complete or archive an outcome.
-- Derive status: Waiting, Follow-up due, Paused, Complete. Waiting means they still have it and the nudge is not due. Follow-up due means it is time to nudge them.
+- Derive status: Waiting, Follow-up due, Paused, Closed. Waiting means they still have it and the nudge is not due. Follow-up due means it is time to nudge them.
 - Install and use the app as a PWA.
 - Export a backup of local data.
 
@@ -67,6 +67,16 @@ Confirmed exclusions:
 The product name is Looops.
 
 The voice is calm and direct. It does not scold, streak, or manufacture urgency.
+
+The name carries the idea. A loop is an outcome the user is waiting on. It goes around, one follow-up at a time, until it is closed. The copy uses the same few phrases everywhere:
+
+- **Open a loop** — start tracking an outcome.
+- **Loop in** — ask a person for something. Asking the first person, and handing off to the next one, both loop someone in. The people with open asks are **in the loop**.
+- **Loop back** — the scheduled return to someone. "You'll loop back on Friday." The act itself is still a **nudge**.
+- **Comes back around** — a loop that returns to Today when its follow-up is due.
+- **Close the loop** — the outcome is achieved. Closed is the only ending that counts as success. Setting a loop aside pauses it without closing it.
+
+Avoid competing metaphors in copy, such as dispatch, sent, holders, or lines. Design token names in `DESIGN.md` are internal and may keep their names.
 
 ## Evidence on Hand
 

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onNavigate } from '$app/navigation'
 	import { page } from '$app/state'
 	import { ArrowLeft01Icon, Calendar01Icon, LeftToRightListDashIcon } from '@hugeicons/core-free-icons'
 	import { HugeiconsIcon } from '@hugeicons/svelte'
@@ -10,11 +11,34 @@
 	const path = $derived(page.url.pathname)
 	const back = $derived.by(() => {
 		const reply = path.match(/^\/outcomes\/([^/]+)\/reply\//)
-		if (reply) return { href: `/outcomes/${reply[1]}`, label: 'Outcome' }
-		if (/^\/outcomes\/[^/]+$/.test(path)) return { href: '/outcomes', label: 'Outcomes' }
+		if (reply) return { href: `/outcomes/${reply[1]}`, label: 'Loop' }
+		if (/^\/outcomes\/[^/]+$/.test(path)) return { href: '/outcomes', label: 'Loops' }
 		return null
 	})
 	const onOutcomes = $derived(path === '/outcomes' || path.startsWith('/outcomes/'))
+
+	let browserAnimatedBack = false
+
+	$effect(() => {
+		const onPopState = (event: PopStateEvent) => {
+			browserAnimatedBack = event.hasUAVisualTransition
+		}
+		window.addEventListener('popstate', onPopState, { capture: true })
+		return () => window.removeEventListener('popstate', onPopState, { capture: true })
+	})
+
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return
+		if (navigation.from?.url.pathname === navigation.to?.url.pathname) return
+		if (navigation.type === 'popstate' && browserAnimatedBack) return
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve()
+				await navigation.complete
+			})
+		})
+	})
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
@@ -22,7 +46,7 @@
 <div data-has-back={back ? '' : undefined}>
 	{#if back}
 		<a
-			class="hidden phone:sticky phone:top-0 phone:z-20 phone:flex phone:min-h-11 phone:items-center phone:gap-[0.35rem] phone:border-b phone:border-border phone:bg-background phone:pt-[env(safe-area-inset-top)] phone:pr-[max(1rem,env(safe-area-inset-right))] phone:pl-[max(0.75rem,env(safe-area-inset-left))] phone:text-[1.0625rem] phone:font-semibold phone:text-foreground phone:no-underline phone:active:bg-muted phone:focus-visible:z-40 phone:focus-visible:outline-2 phone:focus-visible:-outline-offset-2 phone:focus-visible:outline-ring"
+			class="vt-back-bar hidden phone:sticky phone:top-0 phone:z-20 phone:flex phone:min-h-11 phone:items-center phone:gap-[0.35rem] phone:border-b phone:border-border phone:bg-background phone:pt-[env(safe-area-inset-top)] phone:pr-[max(1rem,env(safe-area-inset-right))] phone:pl-[max(0.75rem,env(safe-area-inset-left))] phone:text-[1.0625rem] phone:font-semibold phone:text-foreground phone:no-underline phone:active:bg-muted phone:focus-visible:z-40 phone:focus-visible:outline-2 phone:focus-visible:-outline-offset-2 phone:focus-visible:outline-ring"
 			href={back.href}
 		>
 			<HugeiconsIcon icon={ArrowLeft01Icon} class="size-5" />
@@ -31,7 +55,7 @@
 	{/if}
 	{@render children()}
 	<nav
-		class="hidden phone:fixed phone:inset-x-0 phone:bottom-0 phone:z-30 phone:grid phone:grid-cols-2 phone:border-t phone:border-border phone:bg-background phone:px-3 phone:pt-[0.15rem] phone:pb-[env(safe-area-inset-bottom)]"
+		class="vt-tab-bar hidden phone:fixed phone:inset-x-0 phone:bottom-0 phone:z-30 phone:grid phone:grid-cols-2 phone:border-t phone:border-border phone:bg-background phone:px-3 phone:pt-[0.15rem] phone:pb-[env(safe-area-inset-bottom)]"
 		aria-label="Places"
 	>
 		<a
@@ -48,7 +72,7 @@
 			aria-current={onOutcomes ? 'page' : undefined}
 		>
 			<HugeiconsIcon icon={LeftToRightListDashIcon} class="size-5" />
-			Outcomes
+			Loops
 		</a>
 	</nav>
 </div>

@@ -161,7 +161,7 @@ The palette is a cool gray-green mist, a deep forest for structure, and one gree
 
 ### Secondary
 
-- **Deep forest** (`forest`): The structural action (Add, bring back, confirm a recorded reply), the entry form’s stroke, and the quiet “Sent” mark. It is darker than dispatch.
+- **Deep forest** (`forest`): The structural action (Open a loop, Reopen loop, View loop), the entry form’s stroke, and the quiet “Nudged” mark. It is darker than dispatch.
 
 ### Tertiary
 
@@ -214,7 +214,7 @@ From 64rem the frame is two columns: a sticky masthead (`minmax(15rem, 18rem)`, 
 
 The open queue is one list. From 80rem each Today row is four aligned tracks — outcome `minmax(9rem, 0.85fr)`, with `minmax(12rem, 1.1fr)`, waiting `5.5rem`, actions `auto` — with a 1.5rem column gap and a matching header. Below that, the row stacks: name and waiting age, then person and ask, then the actions. Holder rows use the same 80rem break, with tracks person `minmax(8rem, 0.7fr)`, ask `minmax(12rem, 1fr)`, context `minmax(11rem, 0.9fr)`, and the action. Routing decisions become two columns from 40rem. Rows are flush to the column; from 40rem they take 0.75rem of horizontal padding.
 
-A following section — another archive group, sent today, history — starts 3rem below, or 4rem from 40rem. Device backup sits further down, 3.5rem, or 5rem from 40rem. Add an outcome lives in the masthead from 64rem and is a full-width control under the ledger below that.
+A following section — another archive group, sent today, history — starts 3rem below, or 4rem from 40rem. Device backup sits further down, 3.5rem, or 5rem from 40rem. Open a loop stays on the masthead at every width. Below 64rem the entry form expands under that control, ahead of the queue. From 64rem the masthead is sticky, so the form opens as a paper slip anchored under the control and over the ledger: the queue does not move and the page does not scroll.
 
 The phone variant is `max-width: 40rem`, and also a coarse pointer with `max-height: 34rem`. It shows the bottom nav and raises Today’s row actions to 3rem and 1rem type. Outcome detail and reply, and only those, add a sticky back bar; Today and the outcomes index use the tabs alone. The wide parent link in the masthead (hidden below 64rem) is the same trip. The nav and the back bar respect the safe-area insets.
 
@@ -247,7 +247,7 @@ Rows, entry forms, the backup band, the phone nav, and the back bar are square. 
 Words, not icon buttons. One filled dispatch action per row or decision. Deep forest is the structural action, not a second green.
 
 - **Shape:** Machined corner (0.375rem). Ledger actions are at least 2.75rem tall. Today’s row actions take 1rem of horizontal padding and, on the phone variant, are 3rem tall at 1rem type. Weight 600.
-- **Decisive fill:** Dispatch green, on-fill text, last on the row. This is Nudge, They replied, Name who’s next, and Replace local data. Hover mixes the green to 80%. Press shifts 1px down. Focus is a 2px dispatch outline, offset 2px.
+- **Decisive fill:** Dispatch green, on-fill text, last on the row. This is Nudge, They replied, Loop in who’s next, and Replace local data. Hover mixes the green to 80%. Press shifts 1px down. Focus is a 2px dispatch outline, offset 2px.
 - **Defer and Done:** Ghost. Transparent on ink, wash on hover, the same size as Nudge. They sit ahead of Nudge. On a stacked Today row, Nudge keeps `margin-left: auto` so it still closes the line.
 - **Outline:** Mist fill, 1px pale seam, wash on hover. Used for a secondary decision (Nudge later, Mark done), for Export backup, and for the Today / Tomorrow choice on an entry form. It is not a second fill.
 - **Add and the other structural actions:** Deep forest, on-fill text. Add is full width, label at the start. Hover mixes 5% ink into the forest. Add is 2.75rem in the masthead and 3rem when it sits under the stacked ledger. Bring back matches that full-width control.
@@ -294,6 +294,8 @@ Sent today is a quieter list under a lighter rule. Each line is at least 3.5rem,
 Nudge names the leaving row and the arriving sent line with the same view-transition name (`dispatch-` plus the outcome id). The group moves over 440ms on `cubic-bezier(0.16, 1, 0.3, 1)`. The page snapshot itself does not crossfade. The arriving line also fades in over 420ms on that same curve, from 4px of blur and -0.4rem. If the viewer prefers reduced motion, the view transition is not started and the arrival animation is none. Color and press on controls use a 150ms standard curve. When an outcome’s state has just changed, that moss status line fades in over 220ms on the dispatch curve, and only when motion is allowed.
 
 **The Still Page Rule.** The root view transition does not crossfade. Only the named line moves, and reduced motion removes even that.
+
+Opening a loop expands the entry form from its control over 320ms on `cubic-bezier(0.16, 1, 0.3, 1)`. Below 64rem the form grows in place and the queue eases down. From 64rem a paper slip reveals from the control — downward when it fits, upward when the control is near the bottom of the window — and the plus mark turns 45 degrees. Reduced motion removes both.
 
 ### Navigation
 

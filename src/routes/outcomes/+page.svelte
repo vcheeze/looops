@@ -17,6 +17,15 @@
 		'focus-visible:outline-ring rounded-sm underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2'
 
 	let groups = $derived(outcomeGroups(today.outcomes))
+	let openCount = $derived(today.outcomes.filter((outcome) => outcome.status !== 'complete').length)
+	let closedCount = $derived(today.outcomes.length - openCount)
+	let tally = $derived.by(() => {
+		if (today.outcomes.length === 0) return 'No loops on this device yet.'
+		if (openCount === 0) return `Every loop is closed on this device.`
+		const open = openCount === 1 ? 'One loop is open' : `${openCount} loops are open`
+		if (closedCount === 0) return `${open} on this device.`
+		return `${open}, ${closedCount} closed, on this device.`
+	})
 	let file = $state<HTMLInputElement | null>(null)
 	let pending = $state<Backup | null>(null)
 	let notice = $state('')
@@ -60,7 +69,7 @@
 </script>
 
 <svelte:head>
-	<title>Outcomes · Looops</title>
+	<title>Loops · Looops</title>
 </svelte:head>
 
 <main class="min-h-screen px-4 pt-5 pb-28 sm:px-6 sm:pt-7 lg:px-10 lg:pt-10 lg:pb-16">
@@ -70,12 +79,10 @@
 				<Wordmark class={textLink} />
 				<a href="/" class="text-muted-foreground hover:text-foreground hidden text-sm lg:block {textLink}">Today</a>
 			</div>
-			<h1 class="mt-9 text-[clamp(2.75rem,5vw,4.5rem)] leading-[0.92] font-semibold tracking-[-0.04em]">Outcomes</h1>
-			<p class="text-muted-foreground mt-4 max-w-[24rem] text-[0.9375rem] leading-6">
-				{today.outcomes.length === 1 ? 'One open loop on this device.' : `${today.outcomes.length} loops on this device.`}
-			</p>
+			<h1 class="mt-9 text-[clamp(2.75rem,5vw,4.5rem)] leading-[0.92] font-semibold tracking-[-0.04em]">Loops</h1>
+			<p class="text-muted-foreground mt-4 max-w-[24rem] text-[0.9375rem] leading-6">{tally}</p>
 			<a href="/" class="mt-8 hidden min-h-11 items-center justify-between border-y border-border py-3 text-sm font-semibold lg:flex {textLink}">
-				Today’s dispatch
+				Today’s follow-ups
 				<HugeiconsIcon icon={ArrowRight02Icon} class="size-4" aria-hidden="true" />
 			</a>
 		</header>
@@ -84,12 +91,12 @@
 			{#if groups.length === 0}
 				<section aria-labelledby="outcomes-empty">
 					<div class="flex min-h-12 items-end justify-between border-b border-foreground pb-3">
-						<h2 id="outcomes-empty" class="text-lg font-semibold tracking-[-0.02em]">All outcomes</h2>
-						<span class="text-muted-foreground text-xs tabular-nums">0 lines</span>
+						<h2 id="outcomes-empty" class="text-lg font-semibold tracking-[-0.02em]">All loops</h2>
+						<span class="text-muted-foreground text-xs tabular-nums">0 loops</span>
 					</div>
 					<div class="border-b border-border py-12 sm:py-16">
-						<p class="text-2xl font-medium tracking-[-0.03em]">No outcomes yet.</p>
-						<p class="text-muted-foreground mt-3 text-sm">Start one from Today when someone else has the next move.</p>
+						<p class="text-2xl font-medium tracking-[-0.03em]">No loops yet.</p>
+						<p class="text-muted-foreground mt-3 text-sm">Open one from Today when someone else has the next move.</p>
 					</div>
 				</section>
 			{:else}
@@ -98,7 +105,7 @@
 						<div class="flex min-h-12 items-end justify-between gap-4 border-b border-foreground/70 pb-3">
 							<h2 id="group-{group.status}" class="text-lg font-semibold tracking-[-0.02em]">{group.label}</h2>
 							<span class="text-muted-foreground text-xs tabular-nums">
-								{group.items.length} {group.items.length === 1 ? 'line' : 'lines'}
+								{group.items.length} {group.items.length === 1 ? 'loop' : 'loops'}
 							</span>
 						</div>
 						<ul>
@@ -132,9 +139,9 @@
 					<span class="text-muted-foreground text-xs">JSON</span>
 				</div>
 				<div class="bg-card border-b border-border py-5 sm:px-3 sm:py-6">
-					<p class="max-w-xl text-sm leading-6">Save or replace the complete local record on this device.</p>
+					<p class="max-w-xl text-sm leading-6">Save or replace every loop stored on this device.</p>
 					{#if today.sample}
-						<p class="text-muted-foreground mt-1 text-sm">The current record is still the sample.</p>
+						<p class="text-muted-foreground mt-1 text-sm">The loops here are still the sample.</p>
 					{/if}
 					{#if notice}
 						<p class="border-primary/30 bg-primary/5 mt-4 border-y py-3 text-sm" aria-live="polite">{notice}</p>

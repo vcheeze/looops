@@ -12,6 +12,12 @@
 	}
 }
 
+@custom-variant pointer-fine {
+	@media (hover: hover) and (pointer: fine) {
+		@slot;
+	}
+}
+
 :root {
 	--background: #f4f5f2;
 	--foreground: #17211d;
@@ -161,5 +167,47 @@
 	}
 	::placeholder {
 		color: color-mix(in srgb, var(--muted-foreground), transparent 18%);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	[data-slot='button']:active {
+		scale: 1;
+	}
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 200ms;
+	animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.vt-tab-bar {
+	view-transition-name: tab-bar;
+}
+
+.vt-back-bar {
+	view-transition-name: back-bar;
+}
+
+@media (min-width: 64rem) {
+	.vt-wordmark {
+		view-transition-name: wordmark;
+	}
+}
+
+::view-transition-group(tab-bar),
+::view-transition-old(tab-bar),
+::view-transition-new(tab-bar) {
+	animation: none;
+}
+
+::view-transition-old(tab-bar) {
+	display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	::view-transition-group(*) {
+		animation: none;
 	}
 }

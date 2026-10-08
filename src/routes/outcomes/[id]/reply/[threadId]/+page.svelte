@@ -56,11 +56,11 @@
 		if (!view) return
 		const when = (event.submitter as HTMLButtonElement | null)?.value as When | undefined
 		if (!person.trim() || !ask.trim()) {
-			formError = 'Name who has it next, and what they owe you.'
+			formError = 'Name who you’re looping in next, and what they owe you.'
 			return
 		}
 		if (!when) {
-			formError = 'Choose when you will nudge them.'
+			formError = 'Choose when to loop back.'
 			return
 		}
 		notice = today.handOff(view.outcomeId, view.threadId, person, ask, when)
@@ -80,7 +80,7 @@
 			<div class="flex items-center justify-between border-b border-foreground/15 pb-3 sm:pb-4">
 				<Wordmark class={textLink} />
 				{#if view}
-					<a href="/outcomes/{view.outcomeId}" class="text-muted-foreground hover:text-foreground hidden text-sm lg:block {textLink}">Outcome</a>
+					<a href="/outcomes/{view.outcomeId}" class="text-muted-foreground hover:text-foreground hidden text-sm lg:block {textLink}">Loop</a>
 				{/if}
 			</div>
 
@@ -114,7 +114,7 @@
 					</div>
 					<div class="border-b border-border py-8">
 						<p class="max-w-xl text-lg leading-7" aria-live="polite">{notice}</p>
-						<Button variant="secondary" class="mt-6 min-h-11" href="/outcomes/{view.outcomeId}">Open outcome</Button>
+						<Button variant="secondary" class="mt-6 min-h-11" href="/outcomes/{view.outcomeId}">View loop</Button>
 					</div>
 				</section>
 			{:else if !view.open}
@@ -123,8 +123,8 @@
 						<h2 id="already-recorded" class="text-lg font-semibold tracking-[-0.02em]">Already recorded</h2>
 					</div>
 					<div class="border-b border-border py-8">
-						<p class="text-muted-foreground text-sm">This reply has already changed the outcome.</p>
-						<Button variant="secondary" class="mt-6 min-h-11" href="/outcomes/{view.outcomeId}">Open outcome</Button>
+						<p class="text-muted-foreground text-sm">This reply has already moved it along.</p>
+						<Button variant="secondary" class="mt-6 min-h-11" href="/outcomes/{view.outcomeId}">View loop</Button>
 					</div>
 				</section>
 			{:else if step === 'ask'}
@@ -137,30 +137,30 @@
 						<li class="grid gap-4 border-b border-border py-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:px-3">
 							<div>
 								<p class="text-[1.0625rem] font-semibold tracking-[-0.02em]">Someone else has it now</p>
-								<p class="text-muted-foreground mt-1 text-sm">Close this thread and name the next person and ask.</p>
+								<p class="text-muted-foreground mt-1 text-sm">Their part is done. Loop in the next person and their ask.</p>
 							</div>
 							<Button class="min-h-11 justify-self-end" onclick={() => { formError = ''; step = 'next' }}>
-								Name who’s next
+								Loop in who’s next
 							</Button>
 						</li>
 						<li class="grid gap-4 border-b border-border py-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:px-3">
 							<div>
 								<p class="text-[1.0625rem] font-semibold tracking-[-0.02em]">{view.person} still has it</p>
-								<p class="text-muted-foreground mt-1 text-sm">Record the reply and bring this back tomorrow.</p>
+								<p class="text-muted-foreground mt-1 text-sm">Record the reply and loop back tomorrow.</p>
 							</div>
-							<Button variant="outline" class="min-h-11 justify-self-end" onclick={later}>Nudge later</Button>
+							<Button variant="outline" class="min-h-11 justify-self-end" onclick={later}>Loop back later</Button>
 						</li>
 						<li class="grid gap-4 border-b border-border py-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:px-3">
 							<div>
-								<p class="text-[1.0625rem] font-semibold tracking-[-0.02em]">The outcome is finished</p>
-								<p class="text-muted-foreground mt-1 text-sm">Close the open thread and complete this outcome.</p>
+								<p class="text-[1.0625rem] font-semibold tracking-[-0.02em]">The outcome is achieved</p>
+								<p class="text-muted-foreground mt-1 text-sm">Nothing is left to chase. Record the reply and close the loop.</p>
 							</div>
-							<Button variant="outline" class="min-h-11 justify-self-end" onclick={done}>Mark done</Button>
+							<Button variant="outline" class="min-h-11 justify-self-end" onclick={done}>Close</Button>
 						</li>
 						<li class="grid gap-4 border-b border-border py-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:px-3">
 							<div>
 								<p class="text-[1.0625rem] font-semibold tracking-[-0.02em]">It no longer matters</p>
-								<p class="text-muted-foreground mt-1 text-sm">Set the outcome aside without marking it complete.</p>
+								<p class="text-muted-foreground mt-1 text-sm">Set it aside without closing it. You can reopen it later.</p>
 							</div>
 							<Button variant="ghost" class="min-h-11 justify-self-end" onclick={irrelevant}>Set aside</Button>
 						</li>
@@ -169,7 +169,7 @@
 			{:else}
 				<form class="border-secondary bg-card border p-5 sm:p-7" onsubmit={handOff}>
 					<Field.Set>
-						<Field.Legend>Who has it next?</Field.Legend>
+						<Field.Legend>Who are you looping in next?</Field.Legend>
 						<Field.Group class="mt-6 grid gap-5 sm:grid-cols-2">
 							<Field.Field>
 								<Field.Label for="reply-person">Who</Field.Label>

@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-08T11:46:00+04:00",
+  "title": "Design System: Looops",
+  "extensions": {
+    "colorMeta": {
+      "dispatch": {
+        "role": "primary",
+        "displayName": "Dispatch green",
+        "canonical": "#2e6658",
+        "tonalRamp": ["oklch(15.0% 0.0638 174.8)", "oklch(26.4% 0.0638 174.8)", "oklch(37.9% 0.0638 174.8)", "oklch(49.3% 0.0638 174.8)", "oklch(60.7% 0.0638 174.8)", "oklch(72.1% 0.0638 174.8)", "oklch(83.6% 0.0638 174.8)", "oklch(95.0% 0.0638 174.8)"]
+      },
+      "forest": {
+        "role": "secondary",
+        "displayName": "Deep forest",
+        "canonical": "#183f35",
+        "tonalRamp": ["oklch(15.0% 0.0479 174.0)", "oklch(26.4% 0.0479 174.0)", "oklch(37.9% 0.0479 174.0)", "oklch(49.3% 0.0479 174.0)", "oklch(60.7% 0.0479 174.0)", "oklch(72.1% 0.0479 174.0)", "oklch(83.6% 0.0479 174.0)", "oklch(95.0% 0.0479 174.0)"]
+      },
+      "loop": {
+        "role": "tertiary",
+        "displayName": "Loop sage",
+        "canonical": "#8da99d",
+        "tonalRamp": ["oklch(15.0% 0.0355 167.5)", "oklch(26.4% 0.0355 167.5)", "oklch(37.9% 0.0355 167.5)", "oklch(49.3% 0.0355 167.5)", "oklch(60.7% 0.0355 167.5)", "oklch(72.1% 0.0355 167.5)", "oklch(83.6% 0.0355 167.5)", "oklch(95.0% 0.0355 167.5)"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Forest ink",
+        "canonical": "#17211d",
+        "tonalRamp": ["oklch(15.0% 0.0162 168.5)", "oklch(26.4% 0.0162 168.5)", "oklch(37.9% 0.0162 168.5)", "oklch(49.3% 0.0162 168.5)", "oklch(60.7% 0.0162 168.5)", "oklch(72.1% 0.0162 168.5)", "oklch(83.6% 0.0162 168.5)", "oklch(95.0% 0.0162 168.5)"]
+      },
+      "mist": {
+        "role": "neutral",
+        "displayName": "Cool mist",
+        "canonical": "#f4f5f2",
+        "tonalRamp": ["oklch(15.0% 0.0041 121.6)", "oklch(26.4% 0.0041 121.6)", "oklch(37.9% 0.0041 121.6)", "oklch(49.3% 0.0041 121.6)", "oklch(60.7% 0.0041 121.6)", "oklch(72.1% 0.0041 121.6)", "oklch(83.6% 0.0041 121.6)", "oklch(95.0% 0.0041 121.6)"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Ledger paper",
+        "canonical": "#fbfcf9",
+        "tonalRamp": ["oklch(15.0% 0.0041 121.6)", "oklch(26.4% 0.0041 121.6)", "oklch(37.9% 0.0041 121.6)", "oklch(49.3% 0.0041 121.6)", "oklch(60.7% 0.0041 121.6)", "oklch(72.1% 0.0041 121.6)", "oklch(83.6% 0.0041 121.6)", "oklch(95.0% 0.0041 121.6)"]
+      },
+      "on-fill": {
+        "role": "neutral",
+        "displayName": "On-fill",
+        "canonical": "#f7faf7",
+        "tonalRamp": ["oklch(15.0% 0.0051 145.5)", "oklch(26.4% 0.0051 145.5)", "oklch(37.9% 0.0051 145.5)", "oklch(49.3% 0.0051 145.5)", "oklch(60.7% 0.0051 145.5)", "oklch(72.1% 0.0051 145.5)", "oklch(83.6% 0.0051 145.5)", "oklch(95.0% 0.0051 145.5)"]
+      },
+      "moss": {
+        "role": "neutral",
+        "displayName": "Moss",
+        "canonical": "#53635c",
+        "tonalRamp": ["oklch(15.0% 0.0225 167.1)", "oklch(26.4% 0.0225 167.1)", "oklch(37.9% 0.0225 167.1)", "oklch(49.3% 0.0225 167.1)", "oklch(60.7% 0.0225 167.1)", "oklch(72.1% 0.0225 167.1)", "oklch(83.6% 0.0225 167.1)", "oklch(95.0% 0.0225 167.1)"]
+      },
+      "wash": {
+        "role": "neutral",
+        "displayName": "Wash",
+        "canonical": "#e3e9e4",
+        "tonalRamp": ["oklch(15.0% 0.0092 150.7)", "oklch(26.4% 0.0092 150.7)", "oklch(37.9% 0.0092 150.7)", "oklch(49.3% 0.0092 150.7)", "oklch(60.7% 0.0092 150.7)", "oklch(72.1% 0.0092 150.7)", "oklch(83.6% 0.0092 150.7)", "oklch(95.0% 0.0092 150.7)"]
+      },
+      "seam": {
+        "role": "neutral",
+        "displayName": "Pale seam",
+        "canonical": "#ced8d1",
+        "tonalRamp": ["oklch(15.0% 0.0144 155.6)", "oklch(26.4% 0.0144 155.6)", "oklch(37.9% 0.0144 155.6)", "oklch(49.3% 0.0144 155.6)", "oklch(60.7% 0.0144 155.6)", "oklch(72.1% 0.0144 155.6)", "oklch(83.6% 0.0144 155.6)", "oklch(95.0% 0.0144 155.6)"]
+      },
+      "field": {
+        "role": "neutral",
+        "displayName": "Field",
+        "canonical": "#d9e1dc",
+        "tonalRamp": ["oklch(15.0% 0.0109 158.8)", "oklch(26.4% 0.0109 158.8)", "oklch(37.9% 0.0109 158.8)", "oklch(49.3% 0.0109 158.8)", "oklch(60.7% 0.0109 158.8)", "oklch(72.1% 0.0109 158.8)", "oklch(83.6% 0.0109 158.8)", "oklch(95.0% 0.0109 158.8)"]
+      },
+      "brick": {
+        "role": "destructive",
+        "displayName": "Brick",
+        "canonical": "#9c352f",
+        "tonalRamp": ["oklch(15.0% 0.1385 27.0)", "oklch(26.4% 0.1385 27.0)", "oklch(37.9% 0.1385 27.0)", "oklch(49.3% 0.1385 27.0)", "oklch(60.7% 0.1385 27.0)", "oklch(72.1% 0.1385 27.0)", "oklch(83.6% 0.1385 27.0)", "oklch(95.0% 0.1385 27.0)"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The wide date numeral. Stacked masthead locks it to 4rem." },
+      "masthead": { "displayName": "Masthead", "purpose": "Outcomes and the reply person. A long outcome name steps down." },
+      "headline": { "displayName": "Headline", "purpose": "The word Today." },
+      "title": { "displayName": "Title", "purpose": "Outcome name, holder name, and a routing decision." },
+      "body": { "displayName": "Body", "purpose": "Person, ask, history detail, and the moss supporting line." },
+      "label": { "displayName": "Label", "purpose": "Uppercase ledger column heads. The weekday tracks at 0.14em." },
+      "action": { "displayName": "Action", "purpose": "Decisive, quiet, outline, and structural controls. Phone row actions rise to 1rem." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-dispatch", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Shared-element transfer, the sent-line arrival, and the status fade." },
+      { "name": "duration-transfer", "value": "440ms", "purpose": "View-transition group. The root snapshot does not crossfade." },
+      { "name": "duration-arrival", "value": "420ms", "purpose": "Sent line arrives from opacity 0, 4px blur, and -0.4rem. None when reduced motion is requested." },
+      { "name": "duration-status", "value": "220ms", "purpose": "Moss status line fades in after a state change. Skipped when reduced motion is requested." },
+      { "name": "ease-control", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "150ms color, border, and press transitions on controls and row hover." },
+      { "name": "press", "value": "translateY(1px)", "purpose": "Active button, except when the control opens a popup." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "40rem" },
+      { "name": "phone", "value": "(max-width: 40rem), ((pointer: coarse) and (max-height: 34rem))" },
+      { "name": "lg", "value": "64rem" },
+      { "name": "xl", "value": "80rem" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Nudge",
+      "kind": "button",
+      "refersTo": "button-nudge",
+      "description": "The one dispatch fill on a row or decision, at the terminal edge.",
+      "html": "<button class=\"ds-btn-nudge\" type=\"button\">Nudge</button>",
+      "css": ".ds-btn-nudge { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; padding: 0 1rem; border: 1px solid transparent; border-radius: var(--radius); background: var(--primary); color: var(--primary-foreground); font-family: \"Timeless Sans\", sans-serif; font-size: 0.875rem; font-weight: 600; transition: background-color 150ms, color 150ms, border-color 150ms, transform 150ms; } .ds-btn-nudge:hover { background: color-mix(in oklab, var(--primary) 80%, transparent); } .ds-btn-nudge:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; } .ds-btn-nudge:active { transform: translateY(1px); } .ds-btn-nudge:disabled { opacity: 0.5; } @media (max-width: 40rem) { .ds-btn-nudge { height: 3rem; font-size: 1rem; } }"
+    },
+    {
+      "name": "Quiet action",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Defer, Done, Cancel, and Set aside. Same size as the fill, with no fill until hover.",
+      "html": "<button class=\"ds-btn-quiet\" type=\"button\">Defer</button>",
+      "css": ".ds-btn-quiet { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; padding: 0 1rem; border: 1px solid transparent; border-radius: var(--radius); background: transparent; color: var(--foreground); font-family: \"Timeless Sans\", sans-serif; font-size: 0.875rem; font-weight: 600; transition: background-color 150ms, color 150ms, border-color 150ms, transform 150ms; } .ds-btn-quiet:hover { background: var(--muted); color: var(--foreground); } .ds-btn-quiet:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; } .ds-btn-quiet:active { transform: translateY(1px); } .ds-btn-quiet:disabled { opacity: 0.5; } @media (max-width: 40rem) { .ds-btn-quiet { height: 3rem; font-size: 1rem; } }"
+    },
+    {
+      "name": "Outline action",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "A secondary decision or export. Mist, a pale seam, and wash on hover. Not a second fill.",
+      "html": "<button class=\"ds-btn-outline\" type=\"button\">Nudge later</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; padding: 0 0.75rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--background); color: var(--foreground); font-family: \"Timeless Sans\", sans-serif; font-size: 0.875rem; font-weight: 600; transition: background-color 150ms, color 150ms, border-color 150ms, transform 150ms; } .ds-btn-outline:hover { background: var(--muted); color: var(--foreground); } .ds-btn-outline:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; } .ds-btn-outline:active { transform: translateY(1px); } .ds-btn-outline:disabled { opacity: 0.5; }"
+    },
+    {
+      "name": "Add an outcome",
+      "kind": "button",
+      "refersTo": "button-add",
+      "description": "Full-width deep-forest control. The same fill, not always full width, is Bring back and the return from a recorded reply.",
+      "html": "<button class=\"ds-btn-add\" type=\"button\">Add an outcome</button>",
+      "css": ".ds-btn-add { display: flex; width: 100%; min-height: 2.75rem; align-items: center; justify-content: space-between; padding: 0 1rem; border: 1px solid transparent; border-radius: var(--radius); background: var(--secondary); color: var(--secondary-foreground); font-family: \"Timeless Sans\", sans-serif; font-size: 0.875rem; font-weight: 600; transition: background-color 150ms, color 150ms, border-color 150ms, transform 150ms; } .ds-btn-add:hover { background: color-mix(in oklch, var(--secondary), var(--foreground) 5%); } .ds-btn-add:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; } .ds-btn-add:active { transform: translateY(1px); } .ds-btn-add:disabled { opacity: 0.5; } @media (max-width: 63.99rem) { .ds-btn-add { min-height: 3rem; } }"
+    },
+    {
+      "name": "Text field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Compact field on the square entry form. Brick is the invalid state only.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Who has it</span><input class=\"ds-input\" type=\"text\" placeholder=\"Name\" /></label>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 0.5rem; } .ds-field-label { color: var(--foreground); font-family: \"Timeless Sans\", sans-serif; font-size: 0.875rem; font-weight: 500; } .ds-input { width: 100%; height: 2.25rem; padding: 0.25rem 0.75rem; border: 1px solid transparent; border-radius: calc(var(--radius) * 2.2); background: color-mix(in srgb, var(--input) 50%, transparent); color: var(--foreground); caret-color: var(--primary); font-family: \"Timeless Sans\", sans-serif; font-size: 1rem; } .ds-input::placeholder { color: color-mix(in srgb, var(--muted-foreground), transparent 18%); } .ds-input:focus-visible { border-color: var(--ring); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 30%, transparent); } .ds-input[aria-invalid=\"true\"] { border-color: var(--destructive); box-shadow: 0 0 0 3px color-mix(in srgb, var(--destructive) 20%, transparent); } .ds-field-error { color: var(--destructive); font-family: \"Timeless Sans\", sans-serif; font-size: 0.875rem; font-weight: 400; } @media (min-width: 48rem) { .ds-input { font-size: 0.875rem; } }"
+    },
+    {
+      "name": "Ledger row",
+      "kind": "custom",
+      "description": "A ruled follow-up. Four tracks from 80rem; stacked below that, with Nudge at the far edge.",
+      "html": "<div class=\"ds-row\"><div class=\"ds-row-titleline\"><a class=\"ds-row-title\" href=\"#\">Contract review</a><span class=\"ds-row-age\">6 days</span></div><p class=\"ds-row-with\"><span class=\"ds-row-person\">Avery</span> <span class=\"ds-row-ask\">· Sign the rider</span></p><p class=\"ds-row-wait\">6 days</p><div class=\"ds-row-actions\"><button class=\"ds-row-quiet\" type=\"button\">Defer</button><button class=\"ds-row-quiet\" type=\"button\">Done</button><button class=\"ds-row-nudge\" type=\"button\">Nudge</button></div></div>",
+      "css": ".ds-row { display: grid; min-width: 0; padding: 0.875rem 0; border-bottom: 1px solid var(--border); background: transparent; transition: background-color 150ms; } .ds-row:hover { background: color-mix(in srgb, var(--card) 70%, transparent); } .ds-row-titleline { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; } .ds-row-title { color: var(--foreground); font-family: \"Timeless Sans\", sans-serif; font-size: 1.0625rem; font-weight: 600; line-height: 1.5rem; letter-spacing: -0.02em; text-decoration: none; border-radius: calc(var(--radius) * 0.6); } .ds-row-title:hover { text-decoration: underline; text-underline-offset: 4px; } .ds-row-title:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; } .ds-row-age, .ds-row-wait, .ds-row-ask { color: var(--muted-foreground); font-family: \"Timeless Sans\", sans-serif; } .ds-row-age, .ds-row-wait { font-size: 0.75rem; font-weight: 500; font-variant-numeric: tabular-nums; } .ds-row-wait { display: none; margin: 0; } .ds-row-with { margin: 0.25rem 0 0; font-family: \"Timeless Sans\", sans-serif; font-size: 0.875rem; line-height: 1.25rem; color: var(--foreground); } .ds-row-person { font-weight: 500; } .ds-row-actions { display: flex; align-items: center; gap: 0.25rem; margin-top: 0.75rem; } .ds-row-quiet, .ds-row-nudge { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; padding: 0 1rem; border: 1px solid transparent; border-radius: var(--radius); font-family: \"Timeless Sans\", sans-serif; font-size: 0.875rem; font-weight: 600; transition: background-color 150ms, transform 150ms; } .ds-row-quiet { background: transparent; color: var(--foreground); } .ds-row-quiet:hover { background: var(--muted); } .ds-row-nudge { margin-left: auto; background: var(--primary); color: var(--primary-foreground); } .ds-row-nudge:hover { background: color-mix(in oklab, var(--primary) 80%, transparent); } .ds-row-quiet:focus-visible, .ds-row-nudge:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; } .ds-row-quiet:active, .ds-row-nudge:active { transform: translateY(1px); } @media (min-width: 40rem) { .ds-row { padding-right: 0.75rem; padding-left: 0.75rem; } .ds-row-actions { gap: 0.5rem; } } @media (max-width: 40rem) { .ds-row-quiet, .ds-row-nudge { height: 3rem; font-size: 1rem; } } @media (min-width: 80rem) { .ds-row { grid-template-columns: minmax(9rem, 0.85fr) minmax(12rem, 1.1fr) 5.5rem auto; align-items: center; column-gap: 1.5rem; padding-top: 1.5rem; padding-bottom: 1.5rem; } .ds-row-age { display: none; } .ds-row-wait { display: block; } .ds-row-with, .ds-row-actions { margin-top: 0; } .ds-row-actions { justify-content: flex-end; } .ds-row-nudge { margin-left: 0.5rem; } }"
+    },
+    {
+      "name": "Decision row",
+      "kind": "custom",
+      "description": "A ruled routing line. The action stays at the far edge when the row stacks. Holder rows use the same edge.",
+      "html": "<div class=\"ds-decision\"><div><p class=\"ds-decision-title\">Someone else has it now</p><p class=\"ds-decision-note\">Close this thread and name the next person and ask.</p></div><button class=\"ds-decision-action\" type=\"button\">Name who’s next</button></div>",
+      "css": ".ds-decision { display: grid; gap: 1rem; padding: 1.25rem 0; border-bottom: 1px solid var(--border); } .ds-decision-title { margin: 0; color: var(--foreground); font-family: \"Timeless Sans\", sans-serif; font-size: 1.0625rem; font-weight: 600; letter-spacing: -0.02em; } .ds-decision-note { margin: 0.25rem 0 0; color: var(--muted-foreground); font-family: \"Timeless Sans\", sans-serif; font-size: 0.875rem; line-height: 1.25rem; } .ds-decision-action { justify-self: end; display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; padding: 0 0.75rem; border: 1px solid transparent; border-radius: var(--radius); background: var(--primary); color: var(--primary-foreground); font-family: \"Timeless Sans\", sans-serif; font-size: 0.875rem; font-weight: 600; transition: background-color 150ms, transform 150ms; } .ds-decision-action:hover { background: color-mix(in oklab, var(--primary) 80%, transparent); } .ds-decision-action:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; } .ds-decision-action:active { transform: translateY(1px); } @media (min-width: 40rem) { .ds-decision { grid-template-columns: minmax(0, 1fr) auto; align-items: center; padding-right: 0.75rem; padding-left: 0.75rem; } }"
+    },
+    {
+      "name": "Sent line",
+      "kind": "custom",
+      "description": "A line that has been dispatched. Deep forest marks Sent. Arrival is the 420ms settle.",
+      "html": "<a class=\"ds-sent\" href=\"#\"><span class=\"ds-sent-copy\"><span class=\"ds-sent-title\">Contract review</span> <span class=\"ds-sent-meta\">· Avery · Sign the rider</span></span><span class=\"ds-sent-mark\">Sent</span></a>",
+      "css": ".ds-sent { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem; min-height: 3.5rem; padding: 0.75rem 0; border-bottom: 1px solid var(--border); color: var(--foreground); font-family: \"Timeless Sans\", sans-serif; font-size: 0.875rem; text-decoration: none; border-radius: calc(var(--radius) * 0.6); animation: ds-arrival 420ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-sent:hover { text-decoration: underline; text-underline-offset: 4px; } .ds-sent:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; } .ds-sent-title { font-weight: 500; } .ds-sent-meta { color: var(--muted-foreground); } .ds-sent-mark { color: var(--secondary); font-size: 0.75rem; font-weight: 600; } @keyframes ds-arrival { from { opacity: 0; filter: blur(4px); transform: translateY(-0.4rem); } to { opacity: 1; filter: blur(0); transform: translateY(0); } } @media (prefers-reduced-motion: reduce) { .ds-sent { animation: none; } }"
+    },
+    {
+      "name": "Date masthead",
+      "kind": "custom",
+      "description": "Stacked date lockup. From 64rem the numeral grows and sits above the weekday.",
+      "html": "<div class=\"ds-mast\"><p class=\"ds-mast-day\">8</p><div class=\"ds-mast-meta\"><p class=\"ds-mast-weekday\">Thursday</p><p class=\"ds-mast-month\">October 2026</p></div></div>",
+      "css": ".ds-mast { display: grid; grid-template-columns: auto 1fr; align-items: end; column-gap: 1rem; } .ds-mast-day { margin: 0; color: var(--primary); font-family: \"Timeless Sans\", sans-serif; font-size: 4rem; font-weight: 600; line-height: 0.75; letter-spacing: -0.07em; font-variant-numeric: tabular-nums; } .ds-mast-weekday, .ds-mast-month { margin: 0; font-family: \"Timeless Sans\", sans-serif; } .ds-mast-weekday { color: var(--muted-foreground); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; } .ds-mast-month { margin-top: 0.25rem; color: var(--foreground); font-size: 0.875rem; font-weight: 500; } @media (min-width: 64rem) { .ds-mast { display: block; } .ds-mast-day { font-size: clamp(4.75rem, 10vw, 7.75rem); } .ds-mast-meta { margin-top: 1.25rem; } }"
+    },
+    {
+      "name": "Wordmark",
+      "kind": "custom",
+      "description": "Shared masthead mark. The three o’s are dispatch, forest, then loop sage.",
+      "html": "<a class=\"ds-wordmark\" href=\"/\">L<span class=\"ds-o-dispatch\">o</span><span class=\"ds-o-forest\">o</span><span class=\"ds-o-sage\">o</span>ps</a>",
+      "css": ".ds-wordmark { color: var(--foreground); font-family: \"Timeless Sans\", sans-serif; font-size: 0.875rem; font-weight: 600; letter-spacing: -0.01em; text-decoration: none; border-radius: calc(var(--radius) * 0.6); } .ds-wordmark:hover { text-decoration: underline; text-underline-offset: 4px; } .ds-wordmark:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; } .ds-o-dispatch { color: var(--primary); } .ds-o-forest { color: var(--secondary); } .ds-o-sage { color: var(--chart-3); }"
+    },
+    {
+      "name": "Back bar",
+      "kind": "nav",
+      "refersTo": "back-bar",
+      "description": "Phone-only sticky return on the outcome and the reply. Inset dispatch focus. Absent on Today and the archive.",
+      "html": "<a class=\"ds-back\" href=\"#\">Outcome</a>",
+      "css": ".ds-back { position: relative; display: flex; align-items: center; min-height: 2.75rem; padding: 0 1rem 0 0.75rem; border-bottom: 1px solid var(--border); background: var(--background); color: var(--foreground); font-family: \"Timeless Sans\", sans-serif; font-size: 1.0625rem; font-weight: 600; text-decoration: none; } .ds-back:active { background: var(--muted); } .ds-back:focus-visible { z-index: 1; outline: 2px solid var(--ring); outline-offset: -2px; }"
+    },
+    {
+      "name": "Places",
+      "kind": "nav",
+      "description": "Phone-only bottom nav. Current place is forest ink; the other is moss. Square, with a seam on top and an inset focus ring.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Places\"><a class=\"ds-nav-link\" href=\"#\" aria-current=\"page\">Today</a><a class=\"ds-nav-link\" href=\"#\">Outcomes</a></nav>",
+      "css": ".ds-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); background: var(--background); padding: 0.15rem 0.75rem 0; } .ds-nav-link { position: relative; display: flex; min-height: 3rem; align-items: center; justify-content: center; border-radius: 0; color: var(--muted-foreground); font-family: \"Timeless Sans\", sans-serif; font-size: 0.9375rem; font-weight: 600; text-decoration: none; } .ds-nav-link[aria-current=\"page\"] { color: var(--foreground); } .ds-nav-link:active { background: var(--muted); } .ds-nav-link:focus-visible { z-index: 1; outline: 2px solid var(--ring); outline-offset: -2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Dispatch Ledger",
+    "overview": "Looops is a cool-mist ledger for work other people still hold. Forest ink does the reading, one dispatch green marks the next move, and pale seams separate the lines. Density stays low, and a wait never changes color to manufacture urgency.\n\nEvery route uses the same frame. From the wide breakpoint a sticky masthead sits beside a flush ledger; below that, the masthead stacks and the rows run the width of the page. Today’s masthead is the date. Outcomes, the outcome, and a reply use a title. Archive state is a ruled group, never a badge. History is a quiet date column. A reply is a ruled decision, and its action stays on the far edge when the row stacks.\n\nA dispatched line transfers into the sent record; the rest of the page stays still. When reduced motion is requested, the line changes place with no transfer and no arrival blur. On the phone, a sticky back bar appears only on the outcome and the reply. The bottom tabs are the two places, and their focus ring sits inside the bar.",
+    "keyCharacteristics": [
+      "Cool mist ground, forest ink, and one dispatch green for the decisive fill",
+      "Timeless Sans throughout: an oversized tabular date, or a tight title masthead",
+      "Flush ruled rows, square frames, and no status badges",
+      "One filled action at the terminal edge, even when the row stacks",
+      "A shared colored wordmark, an inset focus ring on phone chrome, and a dispatch the reduced-motion setting removes"
+    ],
+    "rules": [
+      { "name": "The One Green Rule", "body": "Dispatch green is the date numeral, text selection, the caret, the focus ring, and the single decisive fill on a row or decision. It is not a status color.", "section": "colors" },
+      { "name": "The Quiet Wait Rule", "body": "Waiting age stays moss and tabular. Brick marks an invalid field or a backup that cannot be read, never a wait.", "section": "colors" },
+      { "name": "The Mark Rule", "body": "Loop sage is the third stroke of the mark. It is not a fill for buttons, rows, or status.", "section": "colors" },
+      { "name": "The Grotesk Rule", "body": "Timeless Sans is the only face, from the date numeral through the title, the row, and the controls.", "section": "typography" },
+      { "name": "The Masthead Rule", "body": "From 64rem a sticky masthead sits beside the ledger, offset 2.5rem from the top. Today carries the date; the other routes carry a title. Below that, the masthead stacks and the rows run edge to edge.", "section": "layout" },
+      { "name": "The Terminal Edge Rule", "body": "The decisive action is the last control and sits on the far edge, including when the row stacks. Quiet and outline actions stay unfilled beside it.", "section": "layout" },
+      { "name": "The Archive Rule", "body": "Derived state is a ruled group heading and a moss count. A line does not wear a badge.", "section": "layout" },
+      { "name": "The Flat Ledger Rule", "body": "Surfaces cast no shadow. Separation comes from rule weight and from paper tone on hover and on entry forms.", "section": "elevation" },
+      { "name": "The Square Frame Rule", "body": "Rows, the phone nav, the back bar, and entry forms are square. Add, the next holder, and handoff are ledger paper inside a 1px deep-forest stroke. The backup band is square paper under a quiet rule. Buttons use the 6px control radius; fields use the wider field radius.", "section": "shapes" },
+      { "name": "The Still Page Rule", "body": "The root view transition does not crossfade. Only the named line moves, and reduced motion removes even that.", "section": "components" },
+      { "name": "The Inset Chrome Rule", "body": "Phone tabs and the back bar take a 2px dispatch outline inset by 2px. Buttons and text links keep that outline offset 2px outside.", "section": "components" }
+    ],
+    "dos": [
+      "Do set the page on cool mist, read it in forest ink, and keep dispatch green to the decisive fill, the numeral, selection, the caret, and focus.",
+      "Do set follow-ups and holders as flush ruled rows, history as a quiet date column, and the archive as ruled groups with a moss count and no badge on the line.",
+      "Do keep the one filled action at the terminal edge, including when the row stacks.",
+      "Do keep entry forms square — ledger paper inside a 1px deep-forest stroke — and the backup band square paper under a quiet rule.",
+      "Do use the shared wordmark. On the phone, detail and reply get a sticky back bar; tabs and that bar take an inset 2px dispatch outline.",
+      "Do transfer a dispatched line over 440ms on `cubic-bezier(0.16, 1, 0.3, 1)`, and skip that transfer when reduced motion is requested."
+    ],
+    "donts": [
+      "Don't restyle a follow-up, a holder, or a routing decision as a stacked card, a stat tile, or a dashboard widget.",
+      "Don't give Defer, Done, and Nudge the same fill, and don't turn archive state into a badge.",
+      "Don't set display type in a serif, and don't paint with the warm parchment palette or the unused dark-theme tokens.",
+      "Don't color a wait as overdue, and don't add streaks or guilt counts.",
+      "Don't put a drop shadow on a row, a form, a tab, or a button.",
+      "Don't crossfade the whole page when a line is dispatched."
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+@font-face {
+	font-family: "Timeless Sans";
+	src: url("./TimelessSansVF.woff2") format("woff2");
+	font-weight: 300 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Timeless Sans";
+	src: url("./TimelessSans-Regular.woff2") format("woff2");
+	font-weight: 420;
+	font-style: normal;
+	font-display: swap;
+}

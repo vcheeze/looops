@@ -124,7 +124,7 @@
 							Loop someone in
 						</Button>
 						<div class="flex gap-2">
-							<Button variant="outline" class="min-h-11 flex-1" onclick={finish}>Close</Button>
+							<Button variant="outline" class="min-h-11 flex-1" onclick={finish}>Close loop</Button>
 							<Button variant="ghost" class="min-h-11 flex-1" onclick={pause}>Set aside</Button>
 						</div>
 					</div>

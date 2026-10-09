@@ -155,7 +155,7 @@
 								<p class="text-[1.0625rem] font-semibold tracking-[-0.02em]">The outcome is achieved</p>
 								<p class="text-muted-foreground mt-1 text-sm">Nothing is left to chase. Record the reply and close the loop.</p>
 							</div>
-							<Button variant="outline" class="min-h-11 justify-self-end" onclick={done}>Close</Button>
+							<Button variant="outline" class="min-h-11 justify-self-end" onclick={done}>Close loop</Button>
 						</li>
 						<li class="grid gap-4 border-b border-border py-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:px-3">
 							<div>

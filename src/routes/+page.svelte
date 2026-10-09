@@ -39,6 +39,7 @@
 	let present = $state(false)
 	let revealed = $state(false)
 	let placed = $state(false)
+	let floating = $state(false)
 	let slipEl = $state<HTMLFormElement | null>(null)
 	let slipBox = $state({ top: 0, left: 0, width: 0, maxHeight: 0 })
 	let slipNow = { top: 0, left: 0, width: 0, maxHeight: 0 }
@@ -154,6 +155,7 @@
 		present = false
 		revealed = false
 		placed = false
+		floating = false
 		errors = { title: '', person: '', ask: '' }
 	}
 
@@ -196,6 +198,7 @@
 
 	async function openAdd() {
 		const token = ++closeToken
+		floating = isWide()
 		present = true
 		revealed = false
 		placed = false
@@ -246,6 +249,7 @@
 		if (token !== closeToken) return
 		present = false
 		placed = false
+		floating = false
 		errors = { title: '', person: '', ask: '' }
 	}
 
@@ -321,9 +325,11 @@
 		let frame = 0
 		const onLayout = () => {
 			if (!wide.matches) {
+				floating = false
 				placed = false
 				return
 			}
+			floating = true
 			placeSlip()
 		}
 		onLayout()
@@ -358,7 +364,7 @@
 	<div class="mx-auto grid w-full max-w-[90rem] gap-7 lg:grid-cols-[minmax(15rem,18rem)_minmax(0,1fr)] lg:gap-14 xl:gap-24">
 		<header class="lg:sticky lg:top-10 lg:self-start">
 			<div class="flex items-center justify-between border-b border-foreground/15 pb-3 sm:pb-4">
-				<Wordmark href="/outcomes" class={textLink} />
+				<Wordmark class={textLink} />
 				<a href="/outcomes" class="text-muted-foreground hover:text-foreground hidden items-center gap-1 text-sm lg:inline-flex {textLink}">
 					All loops
 					<HugeiconsIcon icon={ArrowRight02Icon} class="size-3.5" aria-hidden="true" />
@@ -377,16 +383,30 @@
 
 			<h1 class="mt-6 text-[2.25rem] leading-[0.92] font-semibold tracking-[-0.045em] lg:mt-14 lg:text-[clamp(2.25rem,5vw,4.25rem)]">Today</h1>
 			<p class="text-muted-foreground mt-2 max-w-[26rem] text-[0.9375rem] leading-6 lg:mt-4">
+				Track outcomes waiting on other people, and see when it’s time to follow up.
 				{#if pending.length === 0}
-					No loops come back around today.
+					{' '}No loops come back around today.
 				{:else if pending.length === 1}
-					One loop is back around for a follow-up.
+					{' '}One loop is back around for a follow-up.
 				{:else}
-					{pending.length} loops are back around for a follow-up.
+					{' '}{pending.length} loops are back around for a follow-up.
 				{/if}
 			</p>
+			<details class="mt-3 max-w-[26rem]">
+				<summary class="flex min-h-11 w-fit cursor-pointer list-none items-center gap-1 text-sm font-semibold {textLink}">
+					How Looops works
+					<span class="works-mark">
+						<HugeiconsIcon icon={ArrowRight02Icon} class="size-3.5" aria-hidden="true" />
+					</span>
+				</summary>
+				<ol class="text-muted-foreground marker:text-foreground mb-1 list-decimal space-y-2 pl-5 text-sm leading-6">
+					<li>Open a loop for the outcome you want.</li>
+					<li>Loop in the person, and name what they owe you.</li>
+					<li>When it comes back around, nudge them.</li>
+				</ol>
+			</details>
 
-			<div class="relative mt-7">
+			<div class="relative mt-5">
 				<Button
 					variant="secondary"
 					class="min-h-12 w-full justify-between px-4 lg:min-h-11 lg:aria-expanded:relative lg:aria-expanded:z-40"
@@ -400,43 +420,10 @@
 						<HugeiconsIcon icon={PlusSignIcon} aria-hidden="true" />
 					</span>
 				</Button>
-				{#if present}
+				{#if present && !floating}
 					<div class="composer-reveal" data-open={revealed ? '' : undefined} bind:this={revealEl}>
 						<div class="composer-clip">
-							<form
-								id="open-loop"
-								class="composer border-secondary bg-card border p-5 sm:p-7"
-								bind:this={slipEl}
-								data-open={revealed ? '' : undefined}
-								data-placed={placed ? '' : undefined}
-								data-above={above ? '' : undefined}
-								style:--slip-top="{slipBox.top}px"
-								style:--slip-left="{slipBox.left}px"
-								style:--slip-width="{slipBox.width}px"
-								style:--slip-max="{slipBox.maxHeight}px"
-								novalidate
-								aria-labelledby="open-loop-legend"
-								role={placed ? 'dialog' : undefined}
-								aria-modal={placed ? 'true' : undefined}
-								inert={!revealed}
-								onsubmit={startWaiting}
-								onkeydown={trapSlip}
-							>
-								<Field.Set>
-									<Field.Legend id="open-loop-legend">Open a loop</Field.Legend>
-									<Field.Group class="mt-6 grid gap-5 sm:grid-cols-2">
-										<div class="sm:col-span-2">{@render textField('add-outcome', 'Outcome', 'outcome', 'title')}</div>
-										{@render textField('add-person', 'Who you’re looping in', 'person', 'person')}
-										{@render textField('add-ask', 'What they owe you', 'ask', 'ask')}
-										<Field.Field orientation="horizontal" class="flex flex-col gap-2 pt-2 sm:col-span-2 sm:flex-row">
-											<Button type="submit" variant="secondary" class="min-h-11 sm:min-w-28" disabled={saving}>
-												{saving ? 'Opening…' : 'Open'}
-											</Button>
-											<Button variant="ghost" class="min-h-11" onclick={closeAdd}>Cancel</Button>
-										</Field.Field>
-									</Field.Group>
-								</Field.Set>
-							</form>
+							{@render openLoopForm()}
 						</div>
 					</div>
 				{/if}
@@ -446,6 +433,16 @@
 		<div class="min-w-0">
 			{#if notice}
 				<p class="border-primary/30 bg-primary/5 mb-6 border-y py-3 text-sm text-foreground" aria-hidden="true">{notice}</p>
+			{/if}
+
+			{#if today.sample}
+				<div class="mb-8 flex flex-col items-start gap-2 border-y border-border py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+					<p class="max-w-xl text-sm leading-6">
+						<span class="font-medium">These are sample loops.</span>
+						<span class="text-muted-foreground"> A loop is an outcome you’re waiting on someone else to move forward.</span>
+					</p>
+					<Button class="min-h-11 shrink-0 self-end sm:self-center" variant="ghost" onclick={clearSample}>Clear sample</Button>
+				</div>
 			{/if}
 
 			<section aria-labelledby="follow-ups-heading">
@@ -505,24 +502,56 @@
 				</section>
 			{/if}
 
-			{#if today.sample}
-				<div class="text-muted-foreground mt-8 flex items-center justify-between gap-4 border-y border-border py-2 text-xs">
-					<span>Sample loops</span>
-					<Button class="min-h-11" variant="ghost" size="sm" onclick={clearSample}>Clear sample</Button>
-				</div>
-			{/if}
 		</div>
 	</div>
-	{#if present}
+	{#if present && floating}
 		<button
 			type="button"
 			tabindex="-1"
-			class="fixed inset-0 z-30 hidden cursor-default bg-transparent lg:block"
+			class="fixed inset-0 z-30 cursor-default bg-transparent"
 			aria-label="Close"
 			onclick={closeAdd}
 		></button>
+		{@render openLoopForm()}
 	{/if}
 </main>
+
+{#snippet openLoopForm()}
+	<form
+		id="open-loop"
+		class="composer border-secondary bg-card z-40 border p-5 sm:p-7"
+		bind:this={slipEl}
+		data-open={revealed ? '' : undefined}
+		data-placed={placed ? '' : undefined}
+		data-above={above ? '' : undefined}
+		style:--slip-top="{slipBox.top}px"
+		style:--slip-left="{slipBox.left}px"
+		style:--slip-width="{slipBox.width}px"
+		style:--slip-max="{slipBox.maxHeight}px"
+		novalidate
+		aria-labelledby="open-loop-legend"
+		role={placed ? 'dialog' : undefined}
+		aria-modal={placed ? 'true' : undefined}
+		inert={!floating && !revealed}
+		onsubmit={startWaiting}
+		onkeydown={trapSlip}
+	>
+		<Field.Set>
+			<Field.Legend id="open-loop-legend">Open a loop</Field.Legend>
+			<Field.Group class="mt-6 grid gap-5 sm:grid-cols-2">
+				<div class="sm:col-span-2">{@render textField('add-outcome', 'Outcome', 'outcome', 'title')}</div>
+				{@render textField('add-person', 'Who you’re looping in', 'person', 'person')}
+				{@render textField('add-ask', 'What they owe you', 'ask', 'ask')}
+				<Field.Field orientation="vertical" class="gap-2 pt-2 sm:col-span-2 sm:flex-row sm:items-center sm:*:w-auto">
+					<Button type="submit" variant="secondary" class="min-h-11 w-full sm:w-auto sm:min-w-28" disabled={saving}>
+						{saving ? 'Opening…' : 'Open'}
+					</Button>
+					<Button variant="ghost" class="min-h-11 w-full sm:w-auto" onclick={closeAdd}>Cancel</Button>
+				</Field.Field>
+			</Field.Group>
+		</Field.Set>
+	</form>
+{/snippet}
 
 {#snippet textField(id: string, label: string, name: string, key: 'title' | 'person' | 'ask')}
 	<Field.Field data-invalid={errors[key] ? 'true' : undefined}>
@@ -598,7 +627,7 @@
 		{/if}
 		<div class="mt-3 flex items-center gap-1 sm:gap-2 xl:mt-0 xl:justify-end" role="group" aria-label="What to do about {outcome.title}">
 			<Button class={rowAction} variant="ghost" onclick={() => defer(outcome.id)}>Defer</Button>
-			<Button class={rowAction} variant="ghost" onclick={() => closeOutcome(outcome.id)}>Close</Button>
+			<Button class={rowAction} variant="ghost" onclick={() => closeOutcome(outcome.id)}>Close loop</Button>
 			<Button class="{rowAction} ml-auto xl:ml-2" onclick={() => nudge(outcome.id)}>Nudge</Button>
 		</div>
 	</li>
@@ -608,6 +637,19 @@
 	:global(#today-page),
 	:global(#today-page *) {
 		overflow-anchor: none;
+	}
+
+	summary::-webkit-details-marker {
+		display: none;
+	}
+
+	:global(.works-mark) {
+		display: inline-flex;
+		transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	:global(details[open] .works-mark) {
+		transform: rotate(90deg);
 	}
 
 	.open-mark {
@@ -710,6 +752,7 @@
 
 	@media (prefers-reduced-motion: reduce) {
 		.open-mark,
+		:global(.works-mark),
 		.composer-reveal,
 		.composer,
 		.dispatch-arrival {

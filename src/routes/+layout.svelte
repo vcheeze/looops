@@ -3,34 +3,39 @@
 	import { page } from '$app/state'
 	import { ArrowLeft01Icon, Calendar01Icon, LeftToRightListDashIcon } from '@hugeicons/core-free-icons'
 	import { HugeiconsIcon } from '@hugeicons/svelte'
-	import favicon from '$lib/assets/favicon.svg'
+	import favicon from '#lib/assets/favicon.svg'
 	import './layout.css'
 
-	let { children } = $props()
+	let { children } = $props();
+	const path = $derived(page.url.pathname);
 
-	const path = $derived(page.url.pathname)
 	const back = $derived.by(() => {
-		const reply = path.match(/^\/outcomes\/([^/]+)\/reply\//)
-		if (reply) return { href: `/outcomes/${reply[1]}`, label: 'Loop' }
-		if (/^\/outcomes\/[^/]+$/.test(path)) return { href: '/outcomes', label: 'Loops' }
-		return null
-	})
-	const onOutcomes = $derived(path === '/outcomes' || path.startsWith('/outcomes/'))
+		const reply = path.match(/^\/outcomes\/([^/]+)\/reply\//);
 
-	let browserAnimatedBack = false
+		if (reply) return { href: `/outcomes/${reply[1]}`, label: 'Loop' };
+		if ((/^\/outcomes\/[^/]+$/).test(path)) return { href: '/outcomes', label: 'Loops' };
+
+		return null;
+	});
+
+	const onOutcomes = $derived(path === '/outcomes' || path.startsWith('/outcomes/'));
+	let browserAnimatedBack = false;
 
 	$effect(() => {
 		const onPopState = (event: PopStateEvent) => {
-			browserAnimatedBack = event.hasUAVisualTransition
-		}
-		window.addEventListener('popstate', onPopState, { capture: true })
-		return () => window.removeEventListener('popstate', onPopState, { capture: true })
-	})
+			browserAnimatedBack = event.hasUAVisualTransition;
+		};
+
+		window.addEventListener('popstate', onPopState, { capture: true });
+
+		return () => window.removeEventListener('popstate', onPopState, { capture: true });
+	});
 
 	onNavigate((navigation) => {
-		if (!document.startViewTransition) return
-		if (navigation.from?.url.pathname === navigation.to?.url.pathname) return
-		if (navigation.type === 'popstate' && browserAnimatedBack) return
+		if (navigation.shallow && navigation.type === 'goto') return;
+		if (!document.startViewTransition) return;
+		if (navigation.from?.url.pathname === navigation.to?.url.pathname) return;
+		if (navigation.type === 'popstate' && browserAnimatedBack) return;
 
 		return new Promise((resolve) => {
 			document.startViewTransition(async () => {

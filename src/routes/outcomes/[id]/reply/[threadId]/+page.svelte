@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/state'
-	import Wordmark from '$lib/components/wordmark.svelte'
-	import { Button } from '$lib/components/ui/button'
-	import * as Field from '$lib/components/ui/field'
-	import { Input } from '$lib/components/ui/input'
-	import { today, type When } from '$lib/today.svelte'
+	import Wordmark from '#lib/components/wordmark.svelte'
+	import { Button } from '#lib/components/ui/button/index.js'
+	import * as Field from '#lib/components/ui/field/index.js'
+	import { Input } from '#lib/components/ui/input/index.js'
+	import { today, type When } from '#lib/today.svelte.js'
 
 	type Step = 'ask' | 'next'
 

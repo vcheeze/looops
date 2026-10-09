@@ -1,4 +1,4 @@
-import type { Outcome, TouchKind } from '$lib/today.svelte'
+import type { Outcome, TouchKind } from '#lib/today.svelte.js'
 
 export type Backup = {
 	format: 'looops-backup'

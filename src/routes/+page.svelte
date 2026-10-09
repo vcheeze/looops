@@ -2,11 +2,11 @@
 	import { tick } from 'svelte'
 	import { ArrowRight02Icon, PlusSignIcon } from '@hugeicons/core-free-icons'
 	import { HugeiconsIcon } from '@hugeicons/svelte'
-	import { Button } from '$lib/components/ui/button'
-	import * as Field from '$lib/components/ui/field'
-	import { Input } from '$lib/components/ui/input'
-	import Wordmark from '$lib/components/wordmark.svelte'
-	import { daysWaiting, leadOpen, nudgedSummary, today, waitLabel, type Outcome } from '$lib/today.svelte'
+	import { Button } from '#lib/components/ui/button/index.js'
+	import * as Field from '#lib/components/ui/field/index.js'
+	import { Input } from '#lib/components/ui/input/index.js'
+	import Wordmark from '#lib/components/wordmark.svelte'
+	import { daysWaiting, leadOpen, nudgedSummary, today, waitLabel, type Outcome } from '#lib/today.svelte.js'
 
 	const now = new Date()
 	const heading = new Intl.DateTimeFormat(undefined, {

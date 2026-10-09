@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { ArrowRight02Icon } from '@hugeicons/core-free-icons'
 	import { HugeiconsIcon } from '@hugeicons/svelte'
-	import Wordmark from '$lib/components/wordmark.svelte'
-	import { Button } from '$lib/components/ui/button'
+	import Wordmark from '#lib/components/wordmark.svelte'
+	import { Button } from '#lib/components/ui/button/index.js'
 	import {
 		backupFilename,
 		backupSummary,
@@ -10,8 +10,8 @@
 		parseBackup,
 		serializeBackup,
 		type Backup
-	} from '$lib/backup'
-	import { outcomeGroups, outcomeSummary, today } from '$lib/today.svelte'
+	} from '#lib/backup.js'
+	import { outcomeGroups, outcomeSummary, today } from '#lib/today.svelte.js'
 
 	const textLink =
 		'focus-visible:outline-ring rounded-sm underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2'
